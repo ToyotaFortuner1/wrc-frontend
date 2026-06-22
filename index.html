@@ -30,7 +30,6 @@
       min-height: 100vh;
     }
 
-    /* ── HERO ── */
     .hero {
       position: relative;
       background: linear-gradient(160deg, #0C0C0C 60%, #1A1408 100%);
@@ -71,9 +70,7 @@
       margin-bottom: 8px;
     }
 
-    .hero-title span {
-      color: var(--gold);
-    }
+    .hero-title span { color: var(--gold); }
 
     .hero-sub {
       font-size: 15px;
@@ -90,7 +87,6 @@
       margin: 28px auto 0;
     }
 
-    /* ── MAIN ── */
     main {
       max-width: 520px;
       margin: 0 auto;
@@ -106,7 +102,6 @@
       margin-bottom: 16px;
     }
 
-    /* ── CARDS ── */
     .options {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -207,7 +202,6 @@
       font-weight: 700;
     }
 
-    /* ── FORM ── */
     .form-wrap {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -243,10 +237,7 @@
     .field input:focus { border-color: var(--gold); }
     .field input::placeholder { color: #3A3A3A; }
 
-    .phone-row {
-      display: flex;
-      gap: 10px;
-    }
+    .phone-row { display: flex; gap: 10px; }
 
     .prefix {
       background: var(--dark);
@@ -268,7 +259,6 @@
       display: none;
     }
 
-    /* ── SUMMARY ── */
     .summary {
       display: flex;
       align-items: center;
@@ -296,7 +286,6 @@
       color: var(--gold);
     }
 
-    /* ── PAY BUTTON ── */
     .pay-btn {
       width: 100%;
       background: linear-gradient(135deg, var(--gold) 0%, #A8862E 100%);
@@ -343,7 +332,6 @@
       line-height: 1.7;
     }
 
-    /* ── OVERLAY ── */
     .overlay {
       display: none;
       position: fixed;
@@ -440,7 +428,6 @@
       font-weight: 700;
     }
 
-    /* ── FOOTER ── */
     footer {
       text-align: center;
       padding: 28px;
@@ -457,47 +444,41 @@
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="badge">WRC Private</div>
   <h1 class="hero-title">Join the<br><span>Inner Circle</span></h1>
-  <p class="hero-sub">Secure your ticket or become a WRC member. Payment via M-Pesa — instant receipt issued.</p>
+  <p class="hero-sub">Secure your pass or become a WRC member. Payment via M-Pesa — instant receipt issued.</p>
   <div class="divider-gold"></div>
 </div>
 
 <main>
-
-  <!-- STEP 1: Choose -->
   <div class="section-label">Select your access</div>
   <div class="options">
-    <div class="option-card selected" data-amount="2500" data-tier="Event Ticket" onclick="selectOption(this)">
+    <div class="option-card selected" data-amount="2500" data-tier="Inner Circle Pass" onclick="selectOption(this)">
       <div class="check-dot"></div>
-      <div class="option-type">One-Time</div>
-      <div class="option-name">Event Ticket</div>
-      <div class="option-desc">Single event admission</div>
+      <div class="option-type">One-Time Access</div>
+      <div class="option-name">Inner Circle Pass</div>
+      <div class="option-desc">Exclusive access to a private gathering</div>
       <div class="option-price">KES 2,500</div>
     </div>
-    <div class="option-card" data-amount="10000" data-tier="WRC Membership" onclick="selectOption(this)">
+    <div class="option-card" data-amount="10000" data-tier="Inner Circle Membership" onclick="selectOption(this)">
       <div class="check-dot"></div>
       <div class="option-type">Full Access</div>
-      <div class="option-name">Membership</div>
-      <div class="option-desc">Exclusive member privileges</div>
+      <div class="option-name">Inner Circle Membership</div>
+      <div class="option-desc">Year-round member privileges</div>
       <div class="option-price">KES 10,000</div>
     </div>
   </div>
 
-  <!-- STEP 2: Details + Pay -->
   <div class="form-wrap">
     <div class="field">
       <label>Full Name</label>
       <input type="text" id="fname" placeholder="Your full name" autocomplete="name"/>
     </div>
-
     <div class="field">
       <label>ID Number</label>
       <input type="text" id="idnum" placeholder="National ID number" inputmode="numeric"/>
     </div>
-
     <div class="field">
       <label>M-Pesa Phone Number</label>
       <div class="phone-row">
@@ -506,35 +487,31 @@
       </div>
       <div class="field-error" id="phone-err">Enter a valid Safaricom number</div>
     </div>
-
     <div class="summary">
       <div class="summary-left">
         Paying for
-        <div class="summary-tier" id="sum-tier">Event Ticket</div>
+        <div class="summary-tier" id="sum-tier">Inner Circle Pass</div>
       </div>
       <div class="summary-amount" id="sum-amount">KES 2,500</div>
     </div>
-
     <button class="pay-btn" id="pay-btn" onclick="pay()">
       Pay Now <span class="mpesa-pill">M-PESA</span>
     </button>
     <p class="pay-hint">You'll receive an M-Pesa PIN prompt on your phone.<br>Enter PIN to confirm. Receipt issued instantly.</p>
   </div>
-
 </main>
 
 <footer>© 2025 WRC Private · Paybill 4136181</footer>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay">
   <div class="modal" id="modal"></div>
 </div>
 
 <script>
-  const BACKEND = 'https://wrc-backend-production.up.railway.app'; // ← replace after Railway deploy
+  const BACKEND = 'https://wrc-backend-production.up.railway.app';
 
   let amount = 2500;
-  let tier = 'Event Ticket';
+  let tier = 'Inner Circle Pass';
   let pollTimer = null;
 
   function selectOption(el) {
