@@ -648,7 +648,7 @@ async function submitPayment() {
   showStatus('Sending M-Pesa prompt to your phone…', 'info');
 
   try {
-    const res = await fetch('https://wrcprivate.club/pay', {
+    const res = await fetch('https://wrc-backend-production.up.railway.app/pay', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
